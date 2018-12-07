@@ -49,12 +49,44 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define LCD_RS_Pin GPIO_PIN_0
+#define LCD_RS_GPIO_Port GPIOA
+#define LCD_E_Pin GPIO_PIN_1
+#define LCD_E_GPIO_Port GPIOA
+#define LCD_Data4_Pin GPIO_PIN_4
+#define LCD_Data4_GPIO_Port GPIOA
+#define LCD_Data5_Pin GPIO_PIN_5
+#define LCD_Data5_GPIO_Port GPIOA
+#define LCD_Data6_Pin GPIO_PIN_6
+#define LCD_Data6_GPIO_Port GPIOA
+#define LCD_Data7_Pin GPIO_PIN_7
+#define LCD_Data7_GPIO_Port GPIOA
+#define KBM_C1_Pin GPIO_PIN_6
+#define KBM_C1_GPIO_Port GPIOC
+#define KBM_C2_Pin GPIO_PIN_7
+#define KBM_C2_GPIO_Port GPIOC
+#define KBM_C2C8_Pin GPIO_PIN_8
+#define KBM_C2C8_GPIO_Port GPIOC
+#define KBM_R1_Pin GPIO_PIN_9
+#define KBM_R1_GPIO_Port GPIOC
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define KBM_R2_Pin GPIO_PIN_10
+#define KBM_R2_GPIO_Port GPIOC
+#define KBM_R3_Pin GPIO_PIN_11
+#define KBM_R3_GPIO_Port GPIOC
+#define KBM_R4_Pin GPIO_PIN_12
+#define KBM_R4_GPIO_Port GPIOC
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
+#define PWM_LD_RED_Pin GPIO_PIN_6
+#define PWM_LD_RED_GPIO_Port GPIOB
+#define PWM_LD_GREEN_Pin GPIO_PIN_7
+#define PWM_LD_GREEN_GPIO_Port GPIOB
+#define PWM_LD_BLUE_Pin GPIO_PIN_8
+#define PWM_LD_BLUE_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**

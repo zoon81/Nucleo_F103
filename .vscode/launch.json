@@ -19,7 +19,7 @@
             "serverLaunchTimeout": 5000,
             "filterStderr": true,
             "filterStdout": false,
-            "serverStarted": "stm32f1x.cpu",
+            //"serverStarted": "INFO gdb-server.c: Listening at *:4242...",
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "externalConsole": true,
@@ -31,11 +31,11 @@
             ],
             "osx": {
                 "MIMode": "gdb",
-                "MIDebuggerPath": "/usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/arm-none-eabi-gdb",
-                "MIDebuggerServerAddress": "localhost:3333",
+                "MIDebuggerPath": "/usr/local/Cellar/arm-gcc-bin/7-2018-q2-update/bin/arm-none-eabi-gdb",
+                "MIDebuggerServerAddress": "localhost:4242",
                 //"preLaunchTask": "flash",
-                "debugServerPath": "/usr/local/Cellar/open-ocd/0.10.0/bin/openocd",
-                "debugServerArgs": "-f ${workspaceRoot}/openocd.cfg ",
+                "debugServerPath": "st-util",
+                //"debugServerArgs": "",
              },
         }
     ]
