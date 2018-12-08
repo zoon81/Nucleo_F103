@@ -121,6 +121,12 @@ void adcdmaCallBack(DMA_HandleTypeDef dma)
 {
   dma_done = 1;
 }
+// GPIO Interupt handler routine
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+  if(GPIO_Pin == USR_BTN_GPIOPIN){
+
+  }
+}
 /* USER CODE END 0 */
 
 /**
@@ -171,10 +177,10 @@ int main(void)
   MX_TIM4_Init();
   MX_ADC1_Init();
   MX_RTC_Init();
+  /* USER CODE BEGIN 2 */
   rgb_init_start(&htim4);
   kbm_init();
   LCD_Init();
-  /* USER CODE BEGIN 2 */
   HAL_UART_Transmit(&huart2, getR, sizeof(getR), 500);
   LCD_String_xy(0, 0, "RGB LED VALUES");
   LCD_String_xy(1, 0, "RED: ");
@@ -324,11 +330,12 @@ int main(void)
     // HAL_ADC_PollForConversion(&hadc1, 100);
     // ch8 = HAL_ADC_GetValue(&hadc1);
     // HAL_ADC_Stop(&hadc1);
-    /* USER CODE END WHILE */
+  /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
+  /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+
 }
 
 /**
@@ -342,9 +349,9 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_PeriphCLKInitTypeDef PeriphClkInit;
 
-  /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI | RCC_OSCILLATORTYPE_LSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.LSIState = RCC_LSI_ON;
@@ -356,9 +363,10 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  /**Initializes the CPU, AHB and APB busses clocks 
+    /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV8;
@@ -369,7 +377,7 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC | RCC_PERIPHCLK_ADC;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_ADC;
   PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV8;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
@@ -377,11 +385,11 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  /**Configure the Systick interrupt time 
+    /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / 1000);
+  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
-  /**Configure the Systick 
+    /**Configure the Systick 
     */
   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
@@ -426,7 +434,7 @@ void _Error_Handler(char *file, int line)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef USE_FULL_ASSERT
+#ifdef  USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -434,8 +442,8 @@ void _Error_Handler(char *file, int line)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
-{
+void assert_failed(uint8_t* file, uint32_t line)
+{ 
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
